@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import api from './utils/apiCep';
 import './App.css'
 import { FaSearchLocation } from "react-icons/fa";
 import Modal from './assets/components/Modal'
-import { useState } from 'react';
 
 export default function App() {
 
@@ -14,34 +14,33 @@ export default function App() {
         setCep(e.target.value)
     }
 
-    const handleCep = () => {
+    const handleCep = async () => {
         if (cep == "") {
             alert("Preencha com um CEP!")
             return
         }
         try {
-            const cepApi = api.get(cep + "/json")
-            cepApi
-                .then((response) => {
-                    const data = response.data
-                    setFindCep(data)
-                    setCep("")
-                    setOpen(true)
-                })
-                .catch((error) => {
-                    alert(error.message + " " + error.code)
-                    setCep("")
-                })
-        } catch {
-            alert("Algo deu errado! Tente novamente!")
+            const response = await api.get(`${cep}/json`)
+            const data = response.data
+            setFindCep(data)
+            setCep("")
+            setOpen(true)
+        }
+        catch (error) {
+            alert(`${error.message} ${error.code}`)
             setCep("")
         }
-
     }
 
     const handleClose = () => {
         setOpen(false)
         setCep("")
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleCep()
+        }
     }
 
     return (
@@ -55,6 +54,7 @@ export default function App() {
                     id="cepSearch"
                     value={cep}
                     onChange={handleWCEP}
+                    onKeyDown={handleKeyDown}
                     maxLength={9}
                 />
                 <button>
