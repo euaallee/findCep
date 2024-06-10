@@ -25,6 +25,7 @@ export default function App() {
             setFindCep(data)
             setCep("")
             setOpen(true)
+            navigator.vibrate([200, 250, 300])
         }
         catch (error) {
             alert(`${error.message} ${error.code}`)
@@ -75,6 +76,7 @@ export default function App() {
                     </div>
                 </Modal>
             )}
+            <footer><p>Feito por <a href="https://github.com/euaallee" target="_blank" rel="noopener noreferrer"></a> </p></footer>
         </main>
     )
 }
