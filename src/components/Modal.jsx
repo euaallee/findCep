@@ -22,6 +22,7 @@ const ContainerModal = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  animation: rotate .2s linear;
 `
 export default function Modal({ children, isOpen, onClose }) {
 

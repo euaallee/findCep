@@ -12,6 +12,7 @@ main {
         font-size: 6.4rem;
         color: #fff;
         animation: rotate .5s linear;
+        text-align: center;
     }
 
     .inputContainer {
@@ -28,6 +29,7 @@ main {
             font-size: 3.2rem;
             padding: .2rem;
             color: #fff;
+            text-overflow: ellipsis;
 
             &::placeholder {
                 color: #b1b1b1;
@@ -54,6 +56,7 @@ main {
 
         position: absolute;
         bottom: 2rem;
+        animation: fade .5s normal;
 
         p {
             font-size: 2.4rem;
@@ -107,10 +110,25 @@ main {
     }
 }
 
+@keyframes fade {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 @media (width < 535px) {
     main {
         h1 {
             font-size: clamp(4.5rem, 2.5vw, 5rem);
+            width: 80%;
         }
 
         .inputContainer {
